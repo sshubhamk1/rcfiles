@@ -111,3 +111,6 @@ set directory=~/.vim/tmp/    "for swap files
 
 " WIll prompt sudo to write otherwise non writable file
 cmap w!! %!sudo tee > /dev/null %
+
+set ts=4
+set noexpandtab
