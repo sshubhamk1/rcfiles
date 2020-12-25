@@ -23,16 +23,15 @@ let mapleader = ','
 
 " map keys
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " Leader C is the prefix for code related mappîngs
 noremap <silent> <Leader>cc :TComment<CR>
 
 " absolute width of netrw window
 " Leader F is for file related mappîngs (open, browse...)
-nnoremap <silent> <Leader>f :CtrlP<CR>
-nnoremap <silent> <Leader>fm :CtrlPMRU<CR>
+"nnoremap <silent> <Leader>f :CtrlP<CR>
+"nnoremap <silent> <Leader>fm :CtrlPMRU<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ctrl B for buffer related mappings
@@ -43,6 +42,9 @@ nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 " Creat (N)ew buffer
 nnoremap <silent> <Leader>bb :bn<CR>
 nnoremap <silent> <Leader>bp :bp<CR>
+nnoremap <silent> <C-k> :bp<CR>
+nnoremap <silent> <C-l> :bn<CR>
+nnoremap <silent> <C-c> :q<CR>
 
 " (D)elete the current buffer
 nnoremap <silent> <Leader>bd :bdelete<CR>
@@ -112,5 +114,69 @@ set directory=~/.vim/tmp/    "for swap files
 " WIll prompt sudo to write otherwise non writable file
 cmap w!! %!sudo tee > /dev/null %
 
-set ts=4
+set ts=2
 set noexpandtab
+
+" Cscope related settings
+if has('cscope')
+		set cscopetag cscopeverbose
+
+		if has('quickfix')
+				set cscopequickfix=s-,c-,d-,i-,t-,e-
+		endif
+
+		cnoreabbrev csa cs add
+		cnoreabbrev csf cs find
+		cnoreabbrev csk cs kill
+		cnoreabbrev csr cs reset
+		cnoreabbrev css cs show
+		cnoreabbrev csh cs help
+
+		"command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+endif
+
+" s: Find this C symbol
+nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+
+" g: Find this definition
+nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+
+" d: Find functions called by this function
+nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+" " c: Find functions calling this function
+nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+
+" " t: Find this text string
+nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+
+" " e: Find this egrep pattern
+nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+
+" " f: Find this file
+nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+
+" " i: Find files #including this file
+nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+
+nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+
+" move in the tag list
+nmap <leader>q :cp<CR>
+nmap <leader>w :cn<CR>
