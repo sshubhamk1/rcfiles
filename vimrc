@@ -89,7 +89,7 @@ set statusline+=%*                                              "syntastic
 
 let g:syntastic_always_populate_loc_list = 1                    "syntastic
 let g:syntastic_auto_loc_list = 1                               "syntastic
-let g:syntastic_check_on_open = 1                               "syntastic
+let g:syntastic_check_on_open = 0                               "syntastic
 let g:syntastic_check_on_wq = 0                                 "syntastic
 
 vnoremap <silent> <Leader>cee    :Tabularize /=<CR>              "tabular
@@ -159,6 +159,7 @@ nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " " i: Find files #including this file
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
+" Horizontal Split
 nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
@@ -168,6 +169,7 @@ nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 
+" Vertical Split
 nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
@@ -180,3 +182,12 @@ nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 " move in the tag list
 nmap <leader>q :cp<CR>
 nmap <leader>w :cn<CR>
+
+" tab management
+nmap <leader>tn :tabnew<CR>
+nmap <leader>tc :tabclose<CR>
+nmap <leader>m :tabNext<CR>
+
+" Change window resize
+nmap <leader>ri :vertical resize +10<CR>
+nmap <leader>rd :vertical resize -10<CR>
