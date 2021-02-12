@@ -114,8 +114,17 @@ set directory=~/.vim/tmp/    "for swap files
 " WIll prompt sudo to write otherwise non writable file
 cmap w!! %!sudo tee > /dev/null %
 
-set ts=2
-set noexpandtab
+set ts=4
+set noexpandtab     "Use softtabstop spaces instead of tab characters for indentation
+set shiftwidth=4    "Indent by 4 spaces when using >>, <<, == etc.
+set softtabstop=4   "Indent by 4 spaces when pressing <TAB>
+
+set autoindent      "Keep indentation from previous line
+set smartindent     "Automatically inserts indentation in some cases
+set cindent         "Like smartindent, but stricter and more customisable
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " Cscope related settings
 if has('cscope')
