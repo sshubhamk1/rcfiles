@@ -128,20 +128,20 @@ autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " Cscope related settings
 if has('cscope')
-		set cscopetag cscopeverbose
+	set cscopetag cscopeverbose
 
-		if has('quickfix')
-				set cscopequickfix=s-,c-,d-,i-,t-,e-
-		endif
+	if has('quickfix')
+		set cscopequickfix=s-,c-,d-,i-,t-,e-
+	endif
 
-		cnoreabbrev csa cs add
-		cnoreabbrev csf cs find
-		cnoreabbrev csk cs kill
-		cnoreabbrev csr cs reset
-		cnoreabbrev css cs show
-		cnoreabbrev csh cs help
+	cnoreabbrev csa cs add
+	cnoreabbrev csf cs find
+	cnoreabbrev csk cs kill
+	cnoreabbrev csr cs reset
+	cnoreabbrev css cs show
+	cnoreabbrev csh cs help
 
-		"command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
+	"command -nargs=0 Cscope cs add $VIMSRC/src/cscope.out $VIMSRC/src
 endif
 
 " s: Find this C symbol
@@ -202,5 +202,5 @@ nmap <leader>ri :vertical resize +10<CR>
 nmap <leader>rd :vertical resize -10<CR>
 
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
