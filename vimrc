@@ -126,6 +126,21 @@ set cindent         "Like smartindent, but stricter and more customisable
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 
+"search and load cscope database from the root of the currnet folder
+function! LoadCscope()
+	let db = findfile("cscope.out", ".;")
+	if (!empty(db))
+		let path = strpart(db, 0, match(db, "/cscope.out$"))
+		set nocscopeverbose " suppress 'duplicate connection' error
+		exe "cs add " . db . " " . path
+		set cscopeverbose
+		" else add the database pointed to by environment variable
+	elseif $CSCOPE_DB != ""
+		cs add $CSCOPE_DB
+	endif
+endfunction
+au BufEnter /* call LoadCscope()
+
 " Cscope related settings
 if has('cscope')
 	set cscopetag cscopeverbose
