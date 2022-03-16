@@ -24,3 +24,9 @@ export CSCOPE_EDITOR=/usr/bin/vim
 export EDITOR=/usr/bin/vim
 alias ls="ls --color"
 set -o vi
+
+unset PROMPT_COMMAND
+
+if [ -z "$STY" ]; then
+	screen -dRR
+fi
