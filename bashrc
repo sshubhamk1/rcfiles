@@ -17,16 +17,16 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 
-export PS1="[\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`][\e[0m \e[0;33m\]\w\[\e[0m]\e[0;31m\]\$(__git_ps1 \"[%s]\")\[\e[0m\] -> "
+export PS1="[\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^:\u\[\e[0m\]; else echo \[\e[31m\]O_O:\u\[\e[0m\]; fi\`][\e[0m \e[0;33m\]\w\[\e[0m]\e[0;31m\]\$(__git_ps1 \"[%s]\")\[\e[0m\]\n -> "
 
 # User specific aliases and functions
 umask  002
 export CSCOPE_EDITOR=/usr/bin/vim
 export EDITOR=/usr/bin/vim
 alias ls="ls --color"
-set -o vi
+#set -o vi
 
-#unset PROMPT_COMMAND
+unset PROMPT_COMMAND
 #
 #if [ -z "$STY" ]; then
 #	screen -dRR
